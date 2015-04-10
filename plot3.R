@@ -12,9 +12,14 @@ data$Date <- strptime(data$Date, format = "%d/%m/%YT%T")
 data <- data[-2]
 
 # making the plot
-png("plot2.png", bg = "transparent")
-with(data, plot(Date, Global_active_power, 
-                type = "l",
-                ylab = "Global Active Power (kilowatts)",
+png("plot3.png", bg = "transparent")
+with(data, plot(Date, Sub_metering_1,
+                type = "n",
+                ylab = "Energy sub metering",
                 xlab = ""))
+with(data, lines(Date, Sub_metering_1, col = "black"))
+with(data, lines(Date, Sub_metering_2, col = "red"))
+with(data, lines(Date, Sub_metering_3, col = "blue"))
+legend("topright", lty = 1, col= c("black", "red", "blue"), 
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 dev.off()
